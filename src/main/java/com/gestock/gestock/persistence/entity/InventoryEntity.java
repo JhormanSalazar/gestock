@@ -25,7 +25,7 @@ public class InventoryEntity {
     @Column(length = 150, nullable = true)
     private String description;
 
-    @Column(name = "inventory_image", length = 255)
+    @Column(name = "inventory_image", length = 255, nullable = true)
     private String inventoryImage;
 
     @Builder.Default
@@ -33,6 +33,7 @@ public class InventoryEntity {
     private Boolean isActive = true;
 
     // Relacion Uno a Muchos, inventories a inventories_products
+    @Builder.Default
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<InventoryProductEntity> inventoryProducts = new ArrayList<>();
 
