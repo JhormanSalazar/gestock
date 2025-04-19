@@ -1,5 +1,6 @@
 package com.gestock.gestock.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.web.bind.annotation.BindParam;
@@ -34,6 +35,7 @@ public class ProductEntity {
 
     @Builder.Default
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference("product-inventoryProduct")
     private List<InventoryProductEntity> inventoryProducts = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -1,5 +1,7 @@
 package com.gestock.gestock.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,10 +37,12 @@ public class InventoryEntity {
     // Relacion Uno a Muchos, inventories a inventories_products
     @Builder.Default
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<InventoryProductEntity> inventoryProducts = new ArrayList<>();
 
     // Relacion Muchos a Uno, inventories a users
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private UserEntity user;
 }

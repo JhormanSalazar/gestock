@@ -1,5 +1,7 @@
 package com.gestock.gestock.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,10 +32,12 @@ public class InventoryProductEntity {
     // Relación Many-to-One con Inventory
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id", referencedColumnName = "id")
+    @JsonBackReference
     private InventoryEntity inventory;
 
     // Relación Many-to-One con Product
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonBackReference("product-inventoryProduct")
     private ProductEntity product;
 }
