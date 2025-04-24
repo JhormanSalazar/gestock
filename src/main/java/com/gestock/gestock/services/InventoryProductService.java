@@ -6,6 +6,7 @@ import com.gestock.gestock.persistence.repository.InventoryProductRepository;
 import com.gestock.gestock.persistence.repository.InventoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public class InventoryProductService {
 
     public List<InventoryProductEntity> findAll(){
         return this.inventoryProductRepository.findAll();
+    }
+
+    @Transactional
+    public void softDelete(Integer iId, Integer pId){
+        this.inventoryProductRepository.softDelete(iId, pId);
     }
 
     @Transactional

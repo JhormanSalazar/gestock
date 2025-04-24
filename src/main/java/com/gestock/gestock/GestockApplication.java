@@ -2,9 +2,11 @@ package com.gestock.gestock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-public class GestockApplication {
+@EnableJpaRepositories
+public class 	GestockApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestockApplication.class, args);

@@ -1,7 +1,6 @@
 package com.gestock.gestock.services;
 
 import com.gestock.gestock.persistence.entity.CategoryEntity;
-import com.gestock.gestock.persistence.entity.InventoryEntity;
 import com.gestock.gestock.persistence.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,17 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<CategoryEntity> findAll(){
+    public List<CategoryEntity> getAll(){
         return this.categoryRepository.findAll();
+    }
+
+    public CategoryEntity getById(Integer id){
+        return this.categoryRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public void softDelete(Integer id){
+        this.categoryRepository.softDelete(id);
     }
 
     @Transactional

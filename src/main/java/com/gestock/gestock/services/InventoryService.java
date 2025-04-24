@@ -1,5 +1,6 @@
 package com.gestock.gestock.services;
 
+import com.gestock.gestock.persistence.entity.CategoryEntity;
 import com.gestock.gestock.persistence.entity.InventoryEntity;
 import com.gestock.gestock.persistence.entity.ProductEntity;
 import com.gestock.gestock.persistence.repository.InventoryRepository;
@@ -21,6 +22,10 @@ public class InventoryService {
 
     public List<InventoryEntity> findAll(){
         return this.inventoryRepository.findAll();
+    }
+
+    public InventoryEntity getById(Integer id){
+        return this.inventoryRepository.findById(id).orElse(null);
     }
 
     @Transactional

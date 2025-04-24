@@ -1,5 +1,6 @@
 package com.gestock.gestock.services;
 
+import com.gestock.gestock.persistence.entity.InventoryEntity;
 import com.gestock.gestock.persistence.entity.ProductEntity;
 import com.gestock.gestock.persistence.repository.ProductRepository;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,10 @@ public class ProductService {
 
     public List<ProductEntity> findAll(){
         return this.productRepository.findAll();
+    }
+
+    public ProductEntity getById(Integer id){
+        return this.productRepository.findById(id).orElse(null);
     }
 
     @Transactional
