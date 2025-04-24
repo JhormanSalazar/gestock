@@ -38,6 +38,15 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
     }
 
+    @PutMapping
+    public ResponseEntity<CategoryEntity> update(@RequestBody CategoryEntity category){
+        if (category.getCategoryId() != null && this.categoryService.getById(category.getCategoryId()) != null){
+            this.categoryService.save(category);
+            return ResponseEntity.ok(category);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
         CategoryEntity category = this.categoryService.getById(id);
