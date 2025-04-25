@@ -16,5 +16,4 @@ public interface InventoryRepository extends JpaRepository<InventoryEntity, Inte
     void softDelete(@Param("id") Integer id);
 
     List<InventoryEntity> findByUser_UserId(Integer userId);
-    List<InventoryEntity> findByUser_UserIdAndIsActiveTrue(Integer userId);
 }
